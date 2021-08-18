@@ -15,11 +15,12 @@ dotenv.config();
 
 function startServer({ port = process.env.PORT } = {}) {
   const app = express();
+  // loading middleware
   app.use(morgan("dev"));
   app.use(cors());
   app.use(cookieParser());
   app.use(express.json());
-  // all API routes are prefixed with /api/v1
+  // loading api
   app.use("/api/v1", getRoutes());
 
   // Generic error handler if errors are missed by 'express-async-errors' middleware
